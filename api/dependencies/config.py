@@ -1,6 +1,6 @@
 class conf:
     db_host = "localhost"
-    db_name = "sandwich_maker_api"
+    db_name = "take_a_byte"
     db_port = 3306
     db_user = "root"
     db_password = "rootroot"

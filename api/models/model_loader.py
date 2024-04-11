@@ -1,11 +1,13 @@
-from . import orders, order_details, recipes, sandwiches, resources
+from . import orders, customers, ratings_review, payment_info, resource_management,menu_items,promotions,staff_login,staff_info,cust_login,cust_info
 
 from ..dependencies.database import engine
 
-
+#Creating tables
 def index():
     orders.Base.metadata.create_all(engine)
-    order_details.Base.metadata.create_all(engine)
-    recipes.Base.metadata.create_all(engine)
-    sandwiches.Base.metadata.create_all(engine)
-    resources.Base.metadata.create_all(engine)
+    customers.Base.metadata.create_all(engine)
+    ratings_review.Base.metadata.create_all(engine)
+    payment_info.Base.metadata.create_all(engine)
+    resource_management.Base.metadata.create_all(engine)
+    menu_items.Base.metadata.create_all(engine)
+    menu_items.Base.metadata.create_all(engine)
