@@ -3,7 +3,7 @@ from sqlalchemy.orm import validates
 from passlib.context import CryptContext
 from ..dependencies.database import Base
 
-# Define a global instance of the password hashing context
+# John G
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
