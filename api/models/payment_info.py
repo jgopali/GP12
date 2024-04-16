@@ -1,15 +1,16 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, DateTime, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
-from ..dependencies.database import Base
+import os
 
+# Using declarative base for ORM
+Base = declarative_base()
 
-class Sandwich(Base):
-    __tablename__ = "sandwiches"
-
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    sandwich_name = Column(String(100), unique=True, nullable=True)
-    price = Column(DECIMAL(4, 2), nullable=False, server_default='0.0')
-
-    recipes = relationship("Recipe", back_populates="sandwich")
-    order_details = relationship("OrderDetail", back_populates="sandwich")
+class PaymentInfo(Base):
+    __tablename__ = 'payment_info'
+    id = Column(Integer, primary_key=True)
+    cardholder_name = Column(String(100), nullable=False)
+    card_number = Column(String(16))  # Example placeholder, encryption needed
+    expiration_date = Column(String(5), nullable=False)  # Format: MM/YY
+    cvv = Column(String(3))  # Example placeholder, do not store per PCI DSS
+    created_at = Column(DateTime, default=datetime.utcnow)
