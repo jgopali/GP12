@@ -1,4 +1,4 @@
-
+'''
 from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -13,4 +13,4 @@ class OrderDetail(Base):
     amount = Column(Integer, index=True, nullable=False)
 
     food = relationship("MenuItem", back_populates="id")
-    order = relationship("Order", back_populates="order_details")
+    order = relationship("Order", back_populates="order_details")'''
