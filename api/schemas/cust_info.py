@@ -1,6 +1,4 @@
-from typing import Optional
 from pydantic import BaseModel
-
 
 class CustomerInfoBase(BaseModel):
     name: str
@@ -11,16 +9,11 @@ class CustomerInfoBase(BaseModel):
 class CustomerInfoCreate(CustomerInfoBase):
     pass
 
-
-class CustomerInfoUpdate(BaseModel):
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    email: Optional[str] = None
-    address: Optional[str] = None
-
+class CustomerInfoUpdate(CustomerInfoBase):
+    pass
 
 class CustomerInfo(CustomerInfoBase):
     id: int
 
-    class ConfigDict:
-        from_attributes = True
+    class Config:
+        orm_mode = True

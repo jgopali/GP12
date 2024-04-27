@@ -34,7 +34,7 @@ def update(db: Session, cust_login_id, cust_login):
     update_data = cust_login.model_dump(exclude_unset=True)
     # Update the database record with the new data, without synchronizing the session
     db_cust_login.update(update_data, synchronize_session=False)
-    # Commit the changes to the database
+    # Commit the changes to the databaase
     db.commit()
     # Return the updated record
     return db_cust_login.first()
