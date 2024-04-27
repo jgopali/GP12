@@ -1,4 +1,4 @@
-'''from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Response, Depends
 from ..models import models
 
@@ -49,4 +49,4 @@ def delete(db: Session, menu_item_resource_id):
     # Commit the changes to the database
     db.commit()
     # Return a response with a status code indicating success (204 No Content)
-    return Response(status_code=status.HTTP_204_NO_CONTENT)'''
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
