@@ -12,7 +12,6 @@ class OrderCreate(OrderBase):
 
 class Order(OrderBase):
     id: int
-    order_details: List["OrderDetail"] = []
 
     class Config:
         orm_mode = True
