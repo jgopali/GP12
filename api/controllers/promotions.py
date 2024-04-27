@@ -7,7 +7,8 @@ def create(db: Session, promotions):
     # Create a new instance of the Promotions model with the provided data
     db_promotions = models.Promotions(
         name=promotions.name,
-        discountAmount=promotions.discountAmount
+        discountAmount=promotions.discountAmount,
+        daysRemaining=promotions.daysRemaining
     )
     # Add the newly created object to the database session
     db.add(db_promotions)

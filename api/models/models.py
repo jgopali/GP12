@@ -47,6 +47,7 @@ class Promotions(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(150), unique=True)
     discountAmount = Column(DECIMAL(5, 2))
+    daysRemaining = Column(Integer)
 
 class Ratings(Base):
     __tablename__ = "ratings_review"
