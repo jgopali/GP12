@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class StaffInfoBase(BaseModel):
     name: str
@@ -9,8 +10,14 @@ class StaffInfoBase(BaseModel):
 class StaffInfoCreate(StaffInfoBase):
     pass
 
+class StaffInfoUpdate(BaseModel):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    address: Optional[str] = None
+
 class StaffInfo(StaffInfoBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True

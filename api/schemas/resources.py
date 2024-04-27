@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class ResourceBase(BaseModel):
     name: str
@@ -7,8 +8,12 @@ class ResourceBase(BaseModel):
 class ResourceCreate(ResourceBase):
     pass
 
+class ResourceUpdate(BaseModel):
+    name: Optional[str] = None
+    amount: Optional[int] = None
+
 class Resource(ResourceBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True

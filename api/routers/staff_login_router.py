@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from hashlib import md5
-from ..schemas import StaffLogin as schemas
+from ..schemas import staffLogin as schemas
 from ..controllers import staff_login as controller
 from ..dependencies.database import get_db
 

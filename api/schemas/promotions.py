@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class PromotionsBase(BaseModel):
     name: str
@@ -7,8 +8,12 @@ class PromotionsBase(BaseModel):
 class PromotionsCreate(PromotionsBase):
     pass
 
+class PromotionsUpdate(BaseModel):
+    name: Optional[str] = None
+    discountAmount: Optional[float] = None
+
 class Promotions(PromotionsBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True

@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class CustomerLoginBase(BaseModel):
     username: str
@@ -7,12 +8,12 @@ class CustomerLoginBase(BaseModel):
 class CustomerLoginCreate(CustomerLoginBase):
     pass
 
+class CustomerLoginUpdate(BaseModel):
+    username: Optional[str] = None
+    password_hash: Optional[str] = None
+
 class CustomerLogin(CustomerLoginBase):
     id: int
 
-class CustomerLoginUpdate(BaseModel):
-    username: str
-    password_hash: str
-
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True

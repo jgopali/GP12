@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class StaffLoginBase(BaseModel):
     username: str
@@ -7,8 +8,12 @@ class StaffLoginBase(BaseModel):
 class StaffLoginCreate(StaffLoginBase):
     pass
 
+class StaffLoginUpdate(BaseModel):
+    username: Optional[str] = None
+    password_hash: Optional[str] = None
+
 class StaffLogin(StaffLoginBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True

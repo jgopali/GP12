@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import Optional
 
 class MenuItemBase(BaseModel):
     name: str
@@ -8,8 +8,12 @@ class MenuItemBase(BaseModel):
 class MenuItemCreate(MenuItemBase):
     pass
 
+class MenuItemUpdate(MenuItemBase):
+    name: Optional[str] = None
+    price: Optional[float] = None
+
 class MenuItem(MenuItemBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True

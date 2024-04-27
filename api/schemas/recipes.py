@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import Optional
 
 class RecipeBase(BaseModel):
     menu_item_id: int
@@ -9,6 +9,13 @@ class RecipeBase(BaseModel):
 class RecipeCreate(RecipeBase):
     pass
 
+class RecipeUpdate(BaseModel):
+    menu_item_id: Optional[int] = None
+    resource_id: Optional[int] = None
+    amount_used: Optional[float] = None
+
 class Recipe(RecipeBase):
-    class Config:
-        orm_mode = True
+    id: int
+    
+    class ConfigDict:
+        from_attributes = True
