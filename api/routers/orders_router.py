@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+'''from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 from ..schemas import orders as schemas
@@ -42,4 +42,4 @@ def delete_order(order_id: int, db: Session = Depends(get_db)):
     db_order = controller.read_one(db, order_id=order_id)
     if db_order is None:
         raise HTTPException(status_code=404, detail="Order not found")
-    return controller.delete(db=db, order_id=order_id)
+    return controller.delete(db=db, order_id=order_id)'''

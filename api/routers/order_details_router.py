@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from ..schemas import order_details as schemas
+from ..schemas import orderDetails as schemas
 from ..controllers import order_details as controller
 from ..dependencies.database import get_db
 
@@ -30,7 +30,7 @@ def read_one_order_detail(order_detail_id: int, db: Session = Depends(get_db)):
 
 # Update method for the OrderDetail router
 @router.put("/{order_detail_id}", response_model=schemas.OrderDetail)
-def update_order_detail(order_detail_id: int, order_detail: schemas.OrderDetailBase, db: Session = Depends(get_db)):
+def update_order_detail(order_detail_id: int, order_detail: schemas.OrderDetailUpdate, db: Session = Depends(get_db)):
     db_order_detail = controller.read_one(db, order_details_id=order_detail_id)
     if db_order_detail is None:
         raise HTTPException(status_code=404, detail="Order Detail not found")
