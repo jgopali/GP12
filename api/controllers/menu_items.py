@@ -7,7 +7,8 @@ def create(db: Session, menu_items):
     # Create a new instance of the MenuItem model with the provided data
     db_menu_items = models.MenuItem(
         name=menu_items.name,
-        price=menu_items.price
+        price=menu_items.price,
+        type=menu_items.type
     )
     # Add the newly created object to the database session
     db.add(db_menu_items)

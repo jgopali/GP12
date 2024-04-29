@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME, c
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, DECIMAL, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, DECIMAL, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from datetime import datetime
@@ -17,6 +17,7 @@ class MenuItem(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(100), unique=True, nullable=False)
     price = Column(DECIMAL(5,2), nullable=False)
+    type = Column(String(100)) # Such as vegetarian
     recipes = relationship("Recipe", back_populates="menu_item")
 
 class Recipe(Base):
@@ -90,5 +91,8 @@ class OrderDetail(Base):
     item_id = Column(Integer, ForeignKey('menu_items.id'))
     quantity = Column(Integer, nullable=False)
     price = Column(DECIMAL(5, 2), nullable=False)
+    takeout = Column(Boolean, nullable=False, default=False)
+    promotion_id = Column(Integer, ForeignKey('promotions.id'), nullable=True)
     order = relationship("Order", back_populates="order_details")
     menu_item = relationship("MenuItem")
+    promo = relationship("Promotions")

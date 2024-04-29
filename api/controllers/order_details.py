@@ -9,7 +9,9 @@ def create(db: Session, order_details):
         order_id=order_details.order_id,
         item_id=order_details.item_id,
         quantity=order_details.quantity,
-        price=order_details.price
+        price=order_details.price,
+        takeout=order_details.takeout,
+        promotion_id=order_details.promotion_id
     )
     # Add the newly created object to the database session
     db.add(db_order_details)
