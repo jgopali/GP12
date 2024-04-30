@@ -41,6 +41,8 @@ def update(db: Session, recipes_id, recipes):
     return db_recipes.first()
 
 
+
+
 def delete(db: Session, recipes_id):
     # Query the database for the object to delete
     db_recipes = db.query(models.Recipe).filter(models.Recipe.id == recipes_id)
