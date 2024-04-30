@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
+from .MenuItem import MenuItem
+from .resources import Resource
 
 class RecipeBase(BaseModel):
     menu_item_id: int
@@ -16,6 +18,11 @@ class RecipeUpdate(BaseModel):
 
 class Recipe(RecipeBase):
     id: int
-    
+    resource_id: int
+    menu_item_id: int
+
+    resources: Resource = None
+    menu_item: MenuItem = None
+
     class ConfigDict:
         from_attributes = True

@@ -1,12 +1,19 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from .models import model_loader
 from .dependencies.config import conf
 from .routers import index as indexRoute
 
+
 # FastAPI declaration
 app = FastAPI()
+
+favicon_path = 'api/favicon.ico'
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse(favicon_path)
 
 origins = ["*"]
 

@@ -21,9 +21,10 @@ class MenuItem(Base):
     recipes = relationship("Recipe", back_populates="menu_item")
 
 class Recipe(Base):
-    __tablename__ = 'menu_item_resource'
-    menu_item_id = Column(Integer, ForeignKey('menu_items.id'), primary_key=True)
-    resource_id = Column(Integer, ForeignKey('resources.id'), primary_key=True)
+    __tablename__ = 'recipes'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    menu_item_id = Column(Integer, ForeignKey('menu_items.id'))
+    resource_id = Column(Integer, ForeignKey('resources.id'))
     amount_used = Column(DECIMAL(5,2), nullable=False)
     menu_item = relationship("MenuItem", back_populates="recipes")
     resource = relationship("Resource", back_populates="recipes")
