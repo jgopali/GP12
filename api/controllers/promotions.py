@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Response, Depends
 from ..models import models
 
+
 def create(db: Session, promotions):
     # Create a new instance of the Promotions model with the provided data
     db_promotions = models.Promotions(
@@ -15,19 +16,6 @@ def create(db: Session, promotions):
     db.commit()
     # Refresh the object to ensure it reflects the current state in the database
     db.refresh(db_promotions)
-
-    # Fetch the menu item
-    menu_item = db.query(models.MenuItem).filter(models.MenuItem.name == promotions.name).first()
-
-    # If the menu item exists, apply the discount
-    if menu_item:
-        menu_item.price -= promotions.discountAmount
-        db.commit()
-
-    # If the menu item doesn't exist, raise an HTTPException
-    else:
-        raise HTTPException(status_code=404, detail=f"Menu item {promotions.name} not found")
-
     # Return the newly created object
     return db_promotions
 
