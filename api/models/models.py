@@ -64,8 +64,7 @@ class CustomerInfo(Base):
     phone = Column(String(50))
     email = Column(String(50))
     address = Column(String(100))
-    orders = relationship("Order", back_populates="customer")
-    payment_info = relationship("PaymentInfo", uselist=False, back_populates="customer")
+    payment_info = relationship("PaymentInfo", uselist=False, back_populates="cust_info")
 
 class CustomerLogin(Base):
     __tablename__ = "cust_login"
@@ -103,7 +102,7 @@ class OrderDetail(Base):
 class PaymentInfo(Base):
     __tablename__ = "payment_info"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    customer_id = Column(Integer, ForeignKey('cust_info.id'))
+    cust_info_id = Column(Integer, ForeignKey('cust_info.id'))
     card_number = Column(String(16), nullable=False)
     expiration_date = Column(DATETIME, nullable=False)
-    customer = relationship("CustomerInfo", back_populates="payment_info")
+    cust_info = relationship("CustomerInfo", back_populates="payment_info")
