@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
 from fastapi import HTTPException, status, Response, Depends
 from ..models import models
 
@@ -18,7 +19,6 @@ def create(db: Session, promotions):
     db.refresh(db_promotions)
     # Return the newly created object
     return db_promotions
-
 
 def read_all(db: Session):
     return db.query(models.Promotions).all()
