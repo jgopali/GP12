@@ -30,7 +30,7 @@ def read_one_promotion(promotions_id: int, db: Session = Depends(get_db)):
 
 # Update method for the Promotions router
 @router.put("/{promotions_id}", response_model=schemas.Promotions)
-def update_promotion(promotions_id: int, promotions: schemas.PromotionsBase, db: Session = Depends(get_db)):
+def update_promotion(promotions_id: int, promotions: schemas.PromotionsUpdate, db: Session = Depends(get_db)):
     db_promotion = controller.read_one(db, promotions_id=promotions_id)
     if db_promotion is None:
         raise HTTPException(status_code=404, detail="Promotion not found")

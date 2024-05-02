@@ -9,7 +9,8 @@ def create(db: Session, promotions):
     db_promotions = models.Promotions(
         name=promotions.name,
         discountAmount=promotions.discountAmount,
-        daysRemaining=promotions.daysRemaining
+        daysRemaining=promotions.daysRemaining,
+        code=promotions.code  # New attribute for promotion code
     )
     # Add the newly created object to the database session
     db.add(db_promotions)
@@ -20,19 +21,11 @@ def create(db: Session, promotions):
     # Return the newly created object
     return db_promotions
 
-def read_all(db: Session):
-    return db.query(models.Promotions).all()
-
-
-def read_one(db: Session, promotions_id):
-    return db.query(models.Promotions).filter(models.Promotions.id == promotions_id).first()
-
-
 def update(db: Session, promotions_id, promotions):
     # Query the database for the object to update
     db_promotions = db.query(models.Promotions).filter(models.Promotions.id == promotions_id)
     # Extract the update data from the provided object
-    update_data = promotions.model_dump(exclude_unset=True)
+    update_data = promotions.dict(exclude_unset=True)
     # Update the database record with the new data, without synchronizing the session
     db_promotions.update(update_data, synchronize_session=False)
     # Commit the changes to the database
@@ -40,6 +33,11 @@ def update(db: Session, promotions_id, promotions):
     # Return the updated record
     return db_promotions.first()
 
+def read_all(db: Session):
+    return db.query(models.Promotions).all()
+
+def read_one(db: Session, promotions_id):
+    return db.query(models.Promotions).filter(models.Promotions.id == promotions_id).first()
 
 def delete(db: Session, promotions_id):
     # Query the database for the object to delete

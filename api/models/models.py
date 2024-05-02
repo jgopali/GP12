@@ -45,6 +45,7 @@ class Promotions(Base):
     name = Column(String(150), unique=True)
     discountAmount = Column(DECIMAL(5, 2))
     daysRemaining = Column(Integer)
+    code = Column(String(50), unique=True)  # New attribute for promotion code
 
 class Ratings(Base):
     __tablename__ = "ratings_review"
